@@ -5,6 +5,16 @@ export class TimerModule extends Module {
   constructor() {
     super("timer", "Таймер");
     this.time = "00:00:00";
+    this.tickSound = this.createAudio('https://www.soundjay.com/buttons/sounds/button-21.mp3');
+    this.timeEndSound = this.createAudio('https://www.soundjay.com/misc/sounds/bell-ringing-04.mp3');
+  }
+
+  createAudio(src) {
+    const audio = new Audio();
+    audio.src = src;
+    audio.preload = 'auto';
+    audio.volume = 0.5;
+    return audio;
   }
   createModal() {
     const modalOverlay = document.createElement('div');
@@ -68,10 +78,15 @@ export class TimerModule extends Module {
     const closeBtn = document.createElement('button');
     closeBtn.className = 'timerModalContent_confirmBtn';
     closeBtn.textContent = 'Закрыть';
+    
+    this.timeEndSound.loop = true;
+    this.timeEndSound.currentTime = 0;
+    this.timeEndSound.play();
 
     const removeElements = () => {
       if (timerBlock) document.body.removeChild(timerBlock);
       if (modalOverlay) document.body.removeChild(modalOverlay);
+      this.timeEndSound.pause();
   };
 
     closeBtn.addEventListener('click', () => {
@@ -121,8 +136,10 @@ export class TimerModule extends Module {
       totalSeconds -= 1;
       const time = this.secondsToTime(totalSeconds);
       timerBlock.textContent = this.converterTimeToConclision(time);
-      if(totalSeconds < 4) {
+      if(totalSeconds < 4 && totalSeconds > 0 ) {
         timerBlock.classList.add('timerBlock-end');
+        this.tickSound.currentTime = 0;
+        this.tickSound.play();
       }
       if(totalSeconds === 0) {
         clearInterval(timerInterval);
