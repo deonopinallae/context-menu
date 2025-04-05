@@ -167,7 +167,7 @@ p {
   pointer-events: none;
 }
 
-.reset-button {
+.button {
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.15 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)" fill="%23f5e7d0"/></svg>');
   border-radius: 8px;
   font-size: 1.3rem;
@@ -184,13 +184,13 @@ p {
   animation: fadeIn 0.3s ease-out forwards;
 }
 
-.reset-button:hover {
+.button:hover {
   background: rgba(0, 0, 0, 0.08);
   color: #2a1e12;
   transform: translateX(3px);
 }
 
-.reset-button:active {
+.button:active {
   transform: translateX(3px) scale(0.98);
 }
 

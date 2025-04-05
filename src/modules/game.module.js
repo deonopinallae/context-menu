@@ -154,7 +154,7 @@ export class GameCrossModule extends Module {
     });
 
     const resetButton = document.createElement("button");
-    resetButton.className = "reset-button";
+    resetButton.className = "button";
     resetButton.textContent = "Выход";
     resetButton.addEventListener("click", () => {
       this.resetGame();
