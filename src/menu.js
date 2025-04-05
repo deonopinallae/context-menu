@@ -30,11 +30,11 @@ export class ContextMenu extends Menu {
     const { offsetWidth, offsetHeight } = this.el;
     this.el.style.left = `${Math.min(x, window.innerWidth - offsetWidth)}px`;
     this.el.style.top = `${Math.min(y, window.innerHeight - offsetHeight)}px`;
-    this.el.style.display = "block";
+    this.el.classList.toggle("open", true); // в css уже прописан класс для показа/удаления меню
   }
 
   close() {
-    this.el.style.display = "none";
+    this.el.classList.toggle("open", false);
   }
 
   // Переопределяем add() для работы только с модулями
