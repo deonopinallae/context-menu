@@ -1,5 +1,5 @@
-import { Menu } from "./core/menu";
-import { Module } from "./core/module";
+import { Menu } from "../core/menu";
+import { Module } from "../core/module";
 
 export class ContextMenu extends Menu {
   constructor(selector) {

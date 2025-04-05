@@ -1,5 +1,5 @@
 import "./styles.css";
-import { ContextMenu } from "./menu";
+import { ContextMenu } from "../compo";
 import { BackgroundModule } from "./modules/background.module";
 import { GameCrossModule } from "./modules/game.module";
 
