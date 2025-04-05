@@ -27,10 +27,10 @@ export class ContextMenu extends Menu {
 
   open(x, y) {
     // Проверка границ экрана
+    this.el.style.display = "block";
     const { offsetWidth, offsetHeight } = this.el;
     this.el.style.left = `${Math.min(x, window.innerWidth - offsetWidth)}px`;
     this.el.style.top = `${Math.min(y, window.innerHeight - offsetHeight)}px`;
-    this.el.style.display = "block";
   }
 
   close() {
@@ -40,7 +40,7 @@ export class ContextMenu extends Menu {
   // Переопределяем add() для работы только с модулями
   add(module) {
     if (!(module instanceof Module)) {
-      throw new Error("Only Module instances can be added to ContextMenu");
+      throw new Error("Ошибка, необходимо использовать module");
     }
     this.modules.push(module);
     this.el.insertAdjacentHTML("beforeend", module.toHTML());
