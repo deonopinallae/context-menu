@@ -9,5 +9,7 @@ export class BackgroundModule extends Module {
     const color = generateRandomColor();
     document.body.style.transition = "background-color 0.5s ease";
     document.body.style.backgroundColor = color;
+    document.body.style.backgroundImage = 'none'
+
   }
 }
