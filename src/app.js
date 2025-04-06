@@ -13,7 +13,6 @@ const contextMenu = new ContextMenu("#menu");
 
 // Добавляем модули
 contextMenu.add(new GameCrossModule());
-contextMenu.add(new GameCrossModule());
 contextMenu.add(new Words());
 contextMenu.add(new Advices());
 contextMenu.add(new ClicksModule());
