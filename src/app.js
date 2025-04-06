@@ -4,6 +4,7 @@ import { ContextMenu } from "./components/menu";
 import { GameCrossModule } from "./modules/game.module";
 import { ClicksModule } from "./modules/clicks.module";
 import { Words } from "./modules/words.module";
+import { Advices } from "./modules/advices.module";
 
 
 new MainPage('Игры', 'Выберите игру из контекстного меню');
@@ -11,5 +12,6 @@ const contextMenu = new ContextMenu("#menu");
 
 // Добавляем модули
 contextMenu.add(new GameCrossModule());
-contextMenu.add(new ClicksModule());
 contextMenu.add(new Words());
+contextMenu.add(new Advices());
+contextMenu.add(new ClicksModule());
