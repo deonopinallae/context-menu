@@ -1,47 +1,405 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-size: 14px;
-    font-family: 'Roboto', sans-serif;
-    height: 100vh;
-    width: 100%;
-    padding: 2rem;
-    box-sizing: border-box;
+  font-size: clamp(24px, 2.08vw, 30px);
+  font-family: "Great Vibes", cursive;
+  height: 100vh;
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+  color: #1b1a1a;
+  background-image: url(./images/373522_main.jpeg);
+}
+h1,
+p {
+  text-align: center;
+  font-weight: 400;
+  font-style: normal;
+}
+button{
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.main-container {
+  margin: 20px auto 0;
+  width: 40vw;
+  height: 40vw;
+  border-radius: 10px; /* Закруглённые углы */
+  box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.2),
+    /* Внутренняя тень (вдавленность) */ inset -3px -3px 5px
+      rgba(255, 255, 255, 0.7); /* Внутренний "свет" */
+  border: 1px solid #ccc; /* Лёгкая граница */
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.main-container p {
+  padding-top: 1rem;
 }
 
 .menu {
-    position: fixed;
-    z-index: 1000;
-    width: 150px;
-    background: #1b1a1a;
-    border-radius: 5px;
-    display: none;
-    list-style: none;
+  position: fixed;
+  z-index: 1000;
+  width: 180px; /* Немного шире для эстетики */
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.15 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)" fill="%23f5e7d0"/></svg>');
+  border-radius: 8px;
+  display: none;
+  list-style: none;
+  padding: 6px 0;
+  margin: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(2px);
+  transform-origin: top left;
+  animation: fadeIn 0.3s ease-out forwards;
 }
 
 .menu.open {
-    display: block;
+  display: block;
 }
 
 .menu .menu-item {
-    padding: 8px 10px;
-    font-size: 1rem;
-    color: #eee;
-    cursor: pointer;
-    transition: background-color .2s ease-in;
-    border-radius: inherit;
+  padding: 10px 15px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #4a3a28;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 6px;
+  border-radius: 4px;
+  position: relative;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
 }
 
 .menu .menu-item:hover {
-    background: #343434;
+  background: rgba(0, 0, 0, 0.08);
+  color: #2a1e12;
+  transform: translateX(3px);
 }
 
+/* .menu .menu-item:active {
+  transform: translateX(3px) scale(0.98);
+} */
+
+.menu .menu-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  right: 15px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 0, 0, 0.1),
+    transparent
+  );
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.gamecross-container {
+  width: 100%;
+  height: 100%; /* Занимает все доступное пространство */
+
+  /* Сетка 3x3 */
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  gap: 2px;
+
+  /* Фон и дополнительные стили */
+  background-image: url("./images/wooden-floor-background.jpg");
+  background-size: cover;
+  position: relative; /* Для позиционирования линии победы */
+}
+
+.gamecross-cell {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(183, 149, 69, 0.42);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.2),
+    /* Внутренняя тень (вдавленность) */ inset -3px -3px 5px
+      rgba(255, 255, 255, 0.7); /* Внутренний "свет" */
+}
+
+.gamecross-cell-cross {
+  background-image: url("./images/cross.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.gamecross-cell-zero {
+  background-image: url("./images/zero.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.winning-line {
+  position: absolute;
+  height: 6px;
+  background: rgba(255, 0, 0, 0.7);
+  box-shadow: 0 0 10px 2px rgba(255, 118, 106, 0.8);
+  transform-origin: 0 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.locked-div {
+  pointer-events: none;
+}
+
+
+.button {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.15 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)" fill="%23f5e7d0"/></svg>');
+  border-radius: 8px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  list-style: none;
+  padding: 6px 0;
+  margin: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(2px);
+  transform-origin: top left;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.button:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #2a1e12;
+  transform: translateX(3px);
+}
+
+.button:active {
+  transform: translateX(3px) scale(0.98);
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  .main-container {
+    margin: 0;
+    width: 95vw;
+    height: 95vw;
+
+    border-radius: 10px; /* Закруглённые углы */
+    box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.2),
+      /* Внутренняя тень (вдавленность) */ inset -3px -3px 5px
+        rgba(255, 255, 255, 0.7); /* Внутренний "свет" */
+    border: 1px solid #ccc; /* Лёгкая граница */
+
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  .gamecross-cell {
+    border-width: 0.5px;
+  }
+}
+
+
+
+.game-settings, .game-info {
+  margin-bottom: 20px;
+}
+
+.game-settings select, .game-settings input {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin: 5px;
+  width: 120px;
+}
+
+.game-info p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #172070;
+}
+
+.game-area {
+  width: 600px;
+  height: 400px;
+  border: 1px solid #172070;
+  border-radius: 20px;
+  margin: 0 auto;
+  position: relative;
+  background: #d1d4e2;
+}
+
+.large-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: crimson;
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.medium-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: crimson;
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.small-circle {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background-color: crimson;
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#start-button {
+  padding: 12px 20px;
+  font-size: 18px;
+  background-color: #172070;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+#start-button:hover {
+  background-color: #5a5a9e;
+}
+
+#time {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+
+@media (max-width: 640px) {
+  .game-area {
+      width: 100%;
+      height: 300px;
+  }
+
+  .game-settings input, .game-settings select, button {
+      font-size: 14px;
+      padding: 6px;
+  }
+}
+
+/* Advice ball */
+.advice-ball__container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+.advice-ball {
+  background-image: url('./images/ball.PNG');
+  width: 180px;
+  height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto;
+  animation-duration: .5s;
+  opacity: 0;
+  transition: all .7s;
+}
+.advice-ball__light{
+  background-image: url('./images/pngwing.com.png');
+  width: 100px;
+  height: 160px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto;
+  animation-duration: 5s;
+}
+.advice__text {
+  transition: all 1s;
+  opacity: 0;
+}
+@keyframes light-animation {
+  from {
+    transform: scale(1);
+  }
+  16% {
+    transform: scale(2);
+  }
+  36% {
+    transform: scale(1);
+  }
+  52% {
+    transform: scale(2);
+  }
+  68% {
+    transform: scale(1);
+  }
+  84% {
+    transform: scale(2);
+  }
+  94% {
+    transform: scale(2.5);
+
+  }
+  to {
+    transform: scale(3);
+  }
+}
+
+@keyframes container-animation {
+  0% { transform: scale(1); }
+  20% { transform: scale(1.5); }
+  40% { transform: scale(2); }
+  50% { transform: scale(2.5); }
+  60% { transform: scale(3); }
+  70% { transform: scale(3.5); }
+  80% { transform: scale(4); }
+  90% { transform: scale(4.5); }
+  100% { 
+    transform: scale(5); 
+    opacity: 0;
+  }
+}
+
+
+/* Timer */
 .timerModalOverlay {
     position: fixed;
     top: 0;
@@ -130,6 +488,7 @@ body {
         font-size: 30px;
     } 
   }
+
 
 .star {
     animation: twinkle 2s infinite alternate ease-in-out;

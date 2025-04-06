@@ -1,0 +1,78 @@
+
+.advice-ball__container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+.advice-ball {
+  background-image: url('./images/ball.PNG');
+  width: 180px;
+  height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto;
+  animation-duration: .5s;
+  opacity: 0;
+  transition: all .3s;
+}
+.advice-ball__light{
+  background-image: url('./images/pngwing.com.png');
+  width: 100px;
+  height: 160px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto;
+  animation-duration: 5s;
+}
+.advice__text {
+  transition: all 1s;
+  opacity: 0;
+}
+@keyframes light-animation {
+  from {
+    transform: scale(1);
+  }
+  16% {
+    transform: scale(2);
+  }
+  36% {
+    transform: scale(1);
+  }
+  52% {
+    transform: scale(2);
+  }
+  68% {
+    transform: scale(1);
+  }
+  84% {
+    transform: scale(2);
+  }
+  94% {
+    transform: scale(2.5);
+
+  }
+  to {
+    transform: scale(3);
+  }
+}
+
+@keyframes container-animation {
+  0% { transform: scale(1); }
+  20% { transform: scale(1.5); }
+  40% { transform: scale(2); }
+  50% { transform: scale(2.5); }
+  60% { transform: scale(3); }
+  70% { transform: scale(3.5); }
+  80% { transform: scale(4); }
+  90% { transform: scale(4.5); }
+  100% { 
+    transform: scale(5); 
+    opacity: 0;
+  }
+}
