@@ -11,6 +11,13 @@ export class MainPage {
     const mainContainer = document.createElement("div");
     mainContainer.className = "main-container";
 
-    document.body.append(this.title, this.text, mainContainer);
+    const button = document.createElement("button");
+    button.className = "button button-right";
+    button.textContent = "Очистить поле";
+    button.addEventListener("click", () => {
+      mainContainer.innerHTML = "";
+    })
+
+    document.body.append(this.title, this.text, mainContainer,button);
   }
 }
