@@ -96,6 +96,7 @@ export class TimerModule extends Module {
     });
   }
 
+
   deleteTimer() {
     this.createModal();
     const modalOverlay = document.querySelector('.timerModalOverlay');
@@ -196,32 +197,31 @@ export class TimerModule extends Module {
     }
   }
   updateBackground(hours) {
-    let newBackground = this.currentBackground;
+    let newBackground;
     
-    if (hours >= 5 && hours < 10) {
-      newBackground = 'morning';
+    if (hours > 5 && hours < 10) {
+        newBackground = 'morning';
     } else if (hours >= 10 && hours < 18) {
-      newBackground = 'day';
+        newBackground = 'day';
     } else if (hours >= 18 && hours < 22) {
-      newBackground = 'evening';
+        newBackground = 'evening';
     } else {
-      newBackground = 'night';
+        newBackground = 'night';
     }
     
-    if (newBackground !== this.currentBackground) {
-      this.currentBackground = newBackground;
-      document.body.style.background = this.backgrounds[newBackground];
-      
-      // Управление звёздами и небесными телами
-      if (newBackground === 'night') {
+
+    this.currentBackground = newBackground;
+    document.body.style.background = this.backgrounds[newBackground];
+    
+    // Управление звёздами и небесными телами
+    if (newBackground === 'night') {
         this.createStars();
         this.createCelestialBodies(false);
-      } else {
+    } else {
         this.removeStars();
         this.createCelestialBodies(true);
-      }
     }
-  }
+}
 
 
   startTimer() {
@@ -234,7 +234,7 @@ export class TimerModule extends Module {
     }
     this.clearCelestialBodies();
     this.removeStars();
-
+   
 
     const timeParts = this.time.split(":");
     const [hours, minutes, seconds] = timeParts.map(Number);
@@ -250,6 +250,11 @@ export class TimerModule extends Module {
     timerBlock.textContent = this.converterTimeToConclision([hours, minutes, seconds]);
     document.body.appendChild(timerBlock);
 
+    const ground = document.createElement('div');
+    ground.className = 'ground';
+    document.body.appendChild(ground);
+
+
 
     this.updateBackground(hours);
 
@@ -264,12 +269,12 @@ export class TimerModule extends Module {
       }
       
       const [h, m, s]= this.secondsToTime(totalSeconds);
-     
+      console.log([h, m, s])
       
       timerBlock.textContent = this.converterTimeToConclision([h, m, s]);
-      if (s === 0) {
+      if (m === 0 && s === 0) {
         this.updateBackground(h);
-      }
+    }
       if(totalSeconds < 4 && totalSeconds > 0) {
         timerBlock.classList.add('timerBlock-end');
         this.tickSound.currentTime = 0;
