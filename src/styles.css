@@ -55,8 +55,8 @@ button:active {
 
 .main-container {
   margin: 20px auto 0;
-  width: 50vw;
-  height: 50vw;
+  width: clamp(500px, 41.67vw, 600px);
+  height: clamp(500px, 41.67vw, 600px);
   border-radius: 10px;
   /* Закруглённые углы */
   box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.2),
@@ -240,30 +240,24 @@ button:active {
 
 .game-settings,
 .game-info {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 .game-settings select,
 .game-settings input {
-  padding: 8px;
   font-size: 16px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  margin: 5px;
-  width: 120px;
+  margin: 3px;
+  width: clamp(80px, 8.33vw, 120px);
 }
 
-.game-info p {
-  font-size: 20px;
-  font-weight: bold;
-}
 
 .game-area {
-  width: 600px;
-  height: 400px;
+  width: 100%;
+  height: 90%;
   border: 1px solid #172070;
   border-radius: 20px;
-  margin: 20px auto;
   position: relative;
   background: #d1d4e2;
 }
@@ -273,7 +267,7 @@ input.fancy-input {
   background-size: cover;
   border-radius: 8px;
   font-weight: 700;
-  padding: 6px 12px;
+  padding: 5px 6px;
   box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.2),
     0 0 0 1px rgba(0, 0, 0, 0.1),
@@ -335,7 +329,6 @@ select.fancy-select {
 
 #start-button {
   padding: 12px 20px;
-  font-size: 18px;
   border: none;
   border-radius: 5px;
 }
@@ -350,16 +343,11 @@ select.fancy-select {
 
 
 @media (max-width: 640px) {
-  .game-area {
-    width: 100%;
-    height: 300px;
-  }
-
   .game-settings input,
   .game-settings select,
   button {
     font-size: 14px;
-    padding: 6px;
+    padding: 3px;
   }
 }
 
@@ -404,38 +392,14 @@ select.fancy-select {
 }
 
 @keyframes light-animation {
-  from {
-    transform: scale(1);
-  }
-
-  16% {
-    transform: scale(2);
-  }
-
-  36% {
-    transform: scale(1);
-  }
-
-  52% {
-    transform: scale(2);
-  }
-
-  68% {
-    transform: scale(1);
-  }
-
-  84% {
-    transform: scale(2);
-  }
-
-  94% {
-    transform: scale(2.5);
-
-  }
-
-  to {
-    transform: scale(3);
-  }
+  from {transform: scale(1);}
+  16% {transform: scale(2);}
+  36% {transform: scale(1);}
+  52% {transform: scale(2);}
+  68% {transform: scale(1);}
+  84% {transform: scale(2);}
+  94% {transform: scale(2.5);}
+  to {transform: scale(3);}
 }
 
 @keyframes container-animation {

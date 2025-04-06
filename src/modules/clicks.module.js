@@ -35,7 +35,6 @@ export class ClicksModule extends Module {
             </div>
 
             <div class="game-area" id="game-area"></div>
-            <button class="button button_exit">Выход</button>
         `;
 
         const startButton = document.getElementById('start-button');
@@ -146,11 +145,5 @@ export class ClicksModule extends Module {
                 clearInterval(gameState.intervalId);
             }
         }
-
-        const resetButton = document.querySelector('.button_exit');
-        resetButton.addEventListener('click', () => {
-            mainContainer.innerHTML = "";
-            clearGame()
-        });
     }
 }
