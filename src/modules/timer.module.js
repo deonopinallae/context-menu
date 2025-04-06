@@ -97,6 +97,11 @@ export class TimerModule extends Module {
   }
 
   deleteTimer() {
+
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+      this.timerInterval = null;
+    }
     this.createModal();
     const modalOverlay = document.querySelector('.timerModalOverlay');
     const modalContent = modalOverlay.querySelector('.timerModalContent');
