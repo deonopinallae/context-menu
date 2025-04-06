@@ -2,7 +2,7 @@ import { Module } from '../core/module'
 
 export class ClicksModule extends Module {
     constructor() {
-        super('clicks', 'Игра: Кликер')
+        super('clicks', 'Кликер')
     }
 
     trigger() {
