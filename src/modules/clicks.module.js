@@ -9,6 +9,8 @@ export class ClicksModule extends Module {
         const container = document.createElement('div');
         container.id = 'game-container';
         document.body.append(container)
+        const mainContainer = document.querySelector(".main-container");
+        mainContainer.append(container);
 
         container.innerHTML = `
             <div class="game-settings">
@@ -33,6 +35,7 @@ export class ClicksModule extends Module {
             </div>
 
             <div class="game-area" id="game-area"></div>
+            <button class="button">Выход</button>
         `;
 
         const startButton = document.getElementById('start-button');
@@ -143,5 +146,11 @@ export class ClicksModule extends Module {
                 clearInterval(gameState.intervalId);
             }
         }
+
+        const resetButton = document.querySelector('.button');
+        resetButton.addEventListener('click', () => {
+            mainContainer.innerHTML = "";
+            clearGame()
+        });
     }
 }
