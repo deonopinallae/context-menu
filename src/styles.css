@@ -76,6 +76,7 @@ button:active {
 }
 
 .menu {
+  text-align: left;
   position: fixed;
   z-index: 1000;
   width: 180px;
@@ -117,9 +118,7 @@ button:active {
   transform: translateX(3px);
 }
 
-/* .menu .menu-item:active {
-  transform: translateX(3px) scale(0.98);
-} */
+
 
 .menu .menu-item:not(:last-child)::after {
   content: "";
