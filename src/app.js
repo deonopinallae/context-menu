@@ -12,7 +12,6 @@ new MainPage('Игры', 'Выберите игру из контекстног�
 const contextMenu = new ContextMenu("#menu");
 
 // Добавляем модули
-game-cross-module
 contextMenu.add(new GameCrossModule());
 contextMenu.add(new GameCrossModule());
 contextMenu.add(new Words());
