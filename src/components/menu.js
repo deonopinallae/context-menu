@@ -1,5 +1,5 @@
-import { Menu } from "./core/menu";
-import { Module } from "./core/module";
+import { Menu } from "../core/menu";
+import { Module } from "../core/module";
 
 export class ContextMenu extends Menu {
   constructor(selector) {
@@ -19,6 +19,7 @@ export class ContextMenu extends Menu {
         const module = this.modules.find(
           (m) => m.type === menuItem.dataset.type
         );
+        document.body.querySelectorAll('.main-page-info').forEach(el => el.style.display = 'none') //Удаление текста главной страницы
         module?.trigger();
         this.close();
       }

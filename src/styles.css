@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
 * {
   margin: 0;
@@ -7,11 +8,17 @@
 }
 
 body {
-  font-size: 14px;
-  font-family: "Roboto", sans-serif;
+  font-size: clamp(24px, 2.08vw, 30px);
   height: 100vh;
   width: 100%;
   padding: 2rem;
+  color: #1b1a1a;
+  background-image: url(./images/373522_main.jpeg);
+}
+h1, p{
+  text-align: center;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .menu {

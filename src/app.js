@@ -1,9 +1,12 @@
 import "./styles.css";
-import { ContextMenu } from "./menu";
+import { MainPage } from "./components/main-page";
+import { ContextMenu } from "./components/menu";
 import { GameCrossModule } from "./modules/game.module";
 import { ClicksModule } from "./modules/clicks.module";
 import { Words } from "./modules/words.module";
 
+
+new MainPage('Игры', 'Выберите игру из контекстного меню');
 const contextMenu = new ContextMenu("#menu");
 
 // Добавляем модули
