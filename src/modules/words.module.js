@@ -11,6 +11,7 @@ export class Words extends Module {
         this.draggedCube = null
         this.word = null
         this.game = false
+        this.mainContainer = document.querySelector('.main-container')
     }
 
     createGameContainer() {
@@ -33,6 +34,7 @@ export class Words extends Module {
         const getLetters = this.splitWord(this.word)
         this.createAnswerField(getLetters.length)
         this.createCubes(getLetters)
+        this.mainContainer.append(this.container)
     }
 
     createWord() {
@@ -90,8 +92,10 @@ export class Words extends Module {
     createLetterCube(letter) {
         const cube = document.createElement("div")
         cube.className = `${styles["base-cube"]} ${styles["letter"]}`
-        cube.style.left = `${random(60, this.container.offsetWidth - 120)}px`
-        cube.style.top = `${random(60, this.container.offsetHeight - 100)}px`
+
+        const rect = this.mainContainer.getBoundingClientRect();
+        cube.style.left = `${random(0, rect.width - 60)}px`
+        cube.style.top = `${random(0, rect.height - 60)}px`
         cube.textContent = letter
         cube.setAttribute("draggable", "true")
 
