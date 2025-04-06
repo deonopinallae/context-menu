@@ -2,7 +2,7 @@ import { Module } from "../core/module";
 
 export class TimerModule extends Module {
   constructor() {
-    super("timer", "Таймер");
+    super("timer", "Интерактивный таймер");
     this.time = "00:00:00";
     this.tickSound = this.createAudio('https://www.soundjay.com/buttons/sounds/button-21.mp3');
     this.timeEndSound = this.createAudio('https://www.soundjay.com/misc/sounds/bell-ringing-04.mp3');
