@@ -36,6 +36,7 @@
     font-weight: 700;
     text-transform: uppercase;
     cursor: grab;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .letter {

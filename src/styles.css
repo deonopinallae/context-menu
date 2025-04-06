@@ -9,6 +9,7 @@
 
 body {
   font-size: clamp(24px, 2.08vw, 30px);
+  font-family: "Great Vibes", cursive;
   height: 100vh;
   width: 100%;
   padding: 2rem;
@@ -21,6 +22,10 @@ p {
   text-align: center;
   font-weight: 400;
   font-style: normal;
+}
+button{
+  font-family: inherit;
+  cursor: pointer;
 }
 
 .main-container {
@@ -40,7 +45,6 @@ p {
 
 .main-container p {
   padding-top: 1rem;
-  font-family: "Great Vibes", cursive;
 }
 
 .menu {
@@ -68,7 +72,6 @@ p {
 .menu .menu-item {
   padding: 10px 15px;
   font-size: 1.3rem;
-  font-family: "Great Vibes", cursive;
   font-weight: 700;
   color: #4a3a28;
   cursor: pointer;
@@ -174,7 +177,6 @@ p {
   border-radius: 8px;
   font-size: 1.3rem;
   font-weight: 700;
-  font-family: "Great Vibes", cursive;
   list-style: none;
   padding: 6px 0;
   margin: 0;
@@ -283,18 +285,17 @@ p {
   transition: all 0.2s ease;
 }
 
-button {
+#start-button {
   padding: 12px 20px;
   font-size: 18px;
   background-color: #172070;
   color: white;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
   transition: background-color 0.3s;
 }
 
-button:hover {
+#start-button:hover {
   background-color: #5a5a9e;
 }
 
