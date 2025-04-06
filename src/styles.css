@@ -86,16 +86,14 @@ body {
 
 
 
-/* Advice ball */
 .advice-ball__container {
   height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  animation-duration: .5s;
-  opacity: 0;
-  transition: all .3s;
+  flex-direction: column;
+
 }
 .advice-ball {
   background-image: url('./images/ball.PNG');
@@ -105,6 +103,9 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   margin: 0 auto;
+  animation-duration: .5s;
+  opacity: 0;
+  transition: all .7s;
 }
 .advice-ball__light{
   background-image: url('./images/pngwing.com.png');
@@ -115,6 +116,10 @@ body {
   background-position: center;
   margin: 0 auto;
   animation-duration: 5s;
+}
+.advice__text {
+  transition: all 1s;
+  opacity: 0;
 }
 @keyframes light-animation {
   from {
