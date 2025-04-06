@@ -64,11 +64,5 @@
     font-size: 18px;
     margin-block: 10px;
     border-radius: 10px;
-    background-color: rgb(37, 45, 92);
-    color: white;
     white-space: nowrap;
-}
-
-.button:hover {
-    background-color: rgb(68, 78, 134);
 }
