@@ -123,7 +123,10 @@ export class TimerModule extends Module {
     const removeElements = () => {
       // Остановить звук
       this.timeEndSound.pause();
-      
+      if (this.timerInterval) {
+        clearInterval(this.timerInterval);
+        this.timerInterval = null;
+      }
       // Удалить таймер
       if (timerBlock && timerBlock.parentNode) {
         timerBlock.parentNode.removeChild(timerBlock);
@@ -139,12 +142,12 @@ export class TimerModule extends Module {
         cloud.remove();
       });
       
-      // Очистить небесные тела и звёзды
+    
       this.clearCelestialBodies();
       this.removeStars();
       
       // Сбросить фон
-      document.body.style.background = "url('../images/373522_main.jpeg')";
+      document.body.style.backgroundImage = "url('../images/373522_main.jpeg')";
       
       // Удалить модальное окно
       if (modalOverlay && modalOverlay.parentNode) {
