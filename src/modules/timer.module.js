@@ -139,7 +139,7 @@ export class TimerModule extends Module {
       this.removeStars();
       
       // Сбросить фон
-      document.body.style.background = '';
+      document.body.style.background = "url('../images/373522_main.jpeg')";
       
       // Удалить модальное окно
       if (modalOverlay && modalOverlay.parentNode) {
