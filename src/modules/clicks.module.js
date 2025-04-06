@@ -16,17 +16,17 @@ export class ClicksModule extends Module {
             <div class="game-settings">
                 <label>
                     Время игры (сек):
-                    <input type="number" id="game-time" min="10" max="60" value="10">
+                    <input class="fancy-input" type="number" id="game-time" min="10" max="60" value="10">
                 </label>
                 <label>
                     Уровень сложности:
-                    <select id="difficulty">
+                    <select class="fancy-select" id="difficulty">
                         <option value="easy">Лёгкий</option>
                         <option value="hard">Сложный</option>
                         <option value="veryhard">Очень сложный</option>
                     </select>
                 </label>
-                <button id="start-button">Старт</button>
+                <button class='button' id="start-button">Старт</button>
             </div>
 
             <div class="game-info">
@@ -35,7 +35,7 @@ export class ClicksModule extends Module {
             </div>
 
             <div class="game-area" id="game-area"></div>
-            <button class="button">Выход</button>
+            <button class="button button_exit">Выход</button>
         `;
 
         const startButton = document.getElementById('start-button');
@@ -147,7 +147,7 @@ export class ClicksModule extends Module {
             }
         }
 
-        const resetButton = document.querySelector('.button');
+        const resetButton = document.querySelector('.button_exit');
         resetButton.addEventListener('click', () => {
             mainContainer.innerHTML = "";
             clearGame()
