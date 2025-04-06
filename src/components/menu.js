@@ -19,6 +19,7 @@ export class ContextMenu extends Menu {
         const module = this.modules.find(
           (m) => m.type === menuItem.dataset.type
         );
+        document.querySelector(".main-container").innerHTML = "";
         module?.trigger();
         this.close();
       }
