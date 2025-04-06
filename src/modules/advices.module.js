@@ -1,6 +1,8 @@
 import { Module } from '../core/module'
 import { random } from '../utils'
 // import  './modules-styles/advices.module.css'
+// const mainContainer = 
+
 
 export class Advices extends Module {
     constructor() {
@@ -24,8 +26,11 @@ export class Advices extends Module {
         this.adviceText = document.createElement('p')
         this.adviceText.className = ('advice__text')
 
-        // const mainContainer = document.querySelector(".main-container")
         // mainContainer.append(this.$rootElement)
+        // console.log(mainContainer)
+        console.log(this.$rootElement)
+
+
     }
 
     async loadAdvices() {
@@ -48,8 +53,11 @@ export class Advices extends Module {
         this.light.style.animationName = ''
         this.light.style.transform = 'scale(1)'
         this.adviceText.style.opacity = '0'
+        
+        this.$rootElement.remove()
+        document.querySelector(".main-container").append(this.$rootElement)
 
-        document.body.append(this.$rootElement)
+
         setTimeout(() => this.ballImg.style.opacity = '1', 100)
         setTimeout(() => this.light.style.animationName = 'light-animation', 500)
         setTimeout(() => {
@@ -60,7 +68,6 @@ export class Advices extends Module {
                 setTimeout(() => {
                     this.adviceText.style.opacity = '1'
                 }, 300)
-                
             }, { once: true })
         }, 4500)
 
@@ -69,8 +76,5 @@ export class Advices extends Module {
             return
         }
         this.adviceText.textContent = this.advices[random(0, this.advices.length - 1)]
-        
-        console.log(this.adviceText.textContent)
-
     }
 }
