@@ -1,8 +1,5 @@
 import { Module } from '../core/module'
 import { random } from '../utils'
-// import  './modules-styles/advices.module.css'
-// const mainContainer = 
-
 
 export class Advices extends Module {
     constructor() {
@@ -25,12 +22,6 @@ export class Advices extends Module {
 
         this.adviceText = document.createElement('p')
         this.adviceText.className = ('advice__text')
-
-        // mainContainer.append(this.$rootElement)
-        // console.log(mainContainer)
-        console.log(this.$rootElement)
-
-
     }
 
     async loadAdvices() {
