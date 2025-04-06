@@ -1,13 +1,10 @@
-
 .container {
-    width: 90vw;
-    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     flex-direction: column;
-    padding: 50px 150px;
+    flex: 1;
 }
 
 .answer-field {
@@ -36,6 +33,7 @@
     font-weight: 700;
     text-transform: uppercase;
     cursor: grab;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .letter {
