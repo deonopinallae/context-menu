@@ -19,7 +19,6 @@ export class ContextMenu extends Menu {
         const module = this.modules.find(
           (m) => m.type === menuItem.dataset.type
         );
-        document.body.querySelectorAll('.main-page-info').forEach(el => el.style.display = 'none') //Удаление текста главной страницы
         module?.trigger();
         this.close();
       }

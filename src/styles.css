@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 
 * {
   margin: 0;
@@ -16,20 +16,49 @@ body {
   color: #1b1a1a;
   background-image: url(./images/373522_main.jpeg);
 }
-h1, p{
+h1,
+p {
   text-align: center;
   font-weight: 400;
   font-style: normal;
 }
 
+.main-container {
+  margin: 20px auto 0;
+  width: 40vw;
+  height: 40vw;
+  border-radius: 10px; /* Закруглённые углы */
+  box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.2),
+    /* Внутренняя тень (вдавленность) */ inset -3px -3px 5px
+      rgba(255, 255, 255, 0.7); /* Внутренний "свет" */
+  border: 1px solid #ccc; /* Лёгкая граница */
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.main-container p {
+  padding-top: 1rem;
+  font-family: "Great Vibes", cursive;
+}
+
 .menu {
   position: fixed;
   z-index: 1000;
-  width: 150px;
-  background: #1b1a1a;
-  border-radius: 5px;
+  width: 180px; /* Немного шире для эстетики */
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.15 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)" fill="%23f5e7d0"/></svg>');
+  border-radius: 8px;
   display: none;
   list-style: none;
+  padding: 6px 0;
+  margin: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(2px);
+  transform-origin: top left;
+  animation: fadeIn 0.3s ease-out forwards;
 }
 
 .menu.open {
@@ -37,61 +66,162 @@ h1, p{
 }
 
 .menu .menu-item {
-  padding: 8px 10px;
-  font-size: 1rem;
-  color: #eee;
+  padding: 10px 15px;
+  font-size: 1.3rem;
+  font-family: "Great Vibes", cursive;
+  font-weight: 700;
+  color: #4a3a28;
   cursor: pointer;
-  transition: background-color 0.2s ease-in;
-  border-radius: inherit;
+  transition: all 0.3s ease;
+  margin: 0 6px;
+  border-radius: 4px;
+  position: relative;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
 }
 
 .menu .menu-item:hover {
-  background: #343434;
+  background: rgba(0, 0, 0, 0.08);
+  color: #2a1e12;
+  transform: translateX(3px);
+}
+
+/* .menu .menu-item:active {
+  transform: translateX(3px) scale(0.98);
+} */
+
+.menu .menu-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  right: 15px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 0, 0, 0.1),
+    transparent
+  );
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .gamecross-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 600px;
-  width: 600px;
+  width: 100%;
+  height: 100%; /* Занимает все доступное пространство */
+
+  /* Сетка 3x3 */
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  gap: 2px;
+
+  /* Фон и дополнительные стили */
   background-image: url("./images/wooden-floor-background.jpg");
-  background-repeat: no-repeat;
   background-size: cover;
-  flex-wrap: wrap;
+  position: relative; /* Для позиционирования линии победы */
 }
 
 .gamecross-cell {
-  height: 200px;
-  width: 200px;
-  border: 1px solid grey;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(183, 149, 69, 0.42);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.2),
+    /* Внутренняя тень (вдавленность) */ inset -3px -3px 5px
+      rgba(255, 255, 255, 0.7); /* Внутренний "свет" */
 }
 
 .gamecross-cell-cross {
   background-image: url("./images/cross.svg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 .gamecross-cell-zero {
   background-image: url("./images/zero.svg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
-
 .winning-line {
   position: absolute;
-  background: #ff0;
-  opacity: 0;
-  transition: opacity 0.5s;
-  z-index: 10;
+  height: 6px;
+  background: rgba(255, 0, 0, 0.7);
+  box-shadow: 0 0 10px 2px rgba(255, 118, 106, 0.8);
+  transform-origin: 0 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
 }
 
 .locked-div {
   pointer-events: none;
 }
 
+
+.button {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.15 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)" fill="%23f5e7d0"/></svg>');
+  border-radius: 8px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-family: "Great Vibes", cursive;
+  list-style: none;
+  padding: 6px 0;
+  margin: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(2px);
+  transform-origin: top left;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.button:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #2a1e12;
+  transform: translateX(3px);
+}
+
+.button:active {
+  transform: translateX(3px) scale(0.98);
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  .main-container {
+    margin: 0;
+    width: 95vw;
+    height: 95vw;
+
+    border-radius: 10px; /* Закруглённые углы */
+    box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.2),
+      /* Внутренняя тень (вдавленность) */ inset -3px -3px 5px
+        rgba(255, 255, 255, 0.7); /* Внутренний "свет" */
+    border: 1px solid #ccc; /* Лёгкая граница */
+
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  .gamecross-cell {
+    border-width: 0.5px;
+  }
+}
+=======
 
 
 .game-settings, .game-info {
@@ -357,4 +487,5 @@ button:hover {
         font-size: 30px;
     } 
   }
+
 

@@ -43,49 +43,51 @@ export class GameCrossModule extends Module {
   drawWinningLine() {
     if (!this.winningLine) return;
 
+    // Удаляем старую линию если есть
+    const oldLine = document.querySelector(".winning-line");
+    if (oldLine) oldLine.remove();
+
     const container = document.querySelector(".gamecross-container");
     const cells = container.querySelectorAll(".gamecross-cell");
 
-    // Получаем координаты ячеек
-    const coords = this.winningLine.map((index) => {
-      const rect = cells[index].getBoundingClientRect();
-      const containerRect = container.getBoundingClientRect();
-      return {
-        x: rect.left + rect.width / 2 - containerRect.left,
-        y: rect.top + rect.height / 2 - containerRect.top,
-      };
-    });
+    // Функция для пересчета позиции
+    const updateLinePosition = () => {
+      const coords = this.winningLine.map((index) => {
+        const rect = cells[index].getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        return {
+          x: rect.left - containerRect.left + rect.width / 2,
+          y: rect.top - containerRect.top + rect.height / 2,
+        };
+      });
 
-    // Создаем элемент линии
+      const line = document.querySelector(".winning-line");
+      if (!line) return;
+
+      const x1 = coords[0].x;
+      const y1 = coords[0].y;
+      const x2 = coords[2].x;
+      const y2 = coords[2].y;
+
+      const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+      const angle = (Math.atan2(y2 - y1, x2 - x1) * 180) / Math.PI;
+
+      line.style.width = `${length}px`;
+      line.style.left = `${x1}px`;
+      line.style.top = `${y1}px`;
+      line.style.transform = `rotate(${angle}deg)`;
+    };
+
+    // Создаем линию
     const line = document.createElement("div");
     line.className = "winning-line";
     container.appendChild(line);
 
-    // Определяем параметры линии
-    const x1 = coords[0].x;
-    const y1 = coords[0].y;
-    const x2 = coords[2].x;
-    const y2 = coords[2].y;
+    // Первоначальная позиция
+    updateLinePosition();
 
-    // Рассчитываем длину и угол наклона
-    const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-    const angle = (Math.atan2(y2 - y1, x2 - x1) * 180) / Math.PI;
-
-    // Устанавливаем стили линии
-    line.style.width = `${length}px`;
-    line.style.height = "8px";
-    line.style.left = `${x1}px`;
-    line.style.top = `${y1}px`;
-    line.style.transformOrigin = "0 0";
-    line.style.transform = `rotate(${angle}deg)`;
-    line.style.background = "rgba(255, 215, 0, 0.7)";
-    line.style.boxShadow = "0 0 10px 2px rgba(255, 215, 0, 0.8)";
-
-    // Анимация появления
-    setTimeout(() => {
-      line.style.opacity = "1";
-      line.style.transition = "opacity 0.5s ease-out";
-    }, 10);
+    // Обновляем при ресайзе
+    window.addEventListener("resize", updateLinePosition);
   }
 
   resetGame() {
@@ -93,7 +95,9 @@ export class GameCrossModule extends Module {
     this.square = [2, 2, 2, 2, 2, 2, 2, 2, 2];
     this.gameOver = false;
     this.winningLine = null;
-    document.querySelector(".gamecross-container").remove();
+    const mainContainer = document.querySelector(".main-container");
+    mainContainer.innerHTML = "";
+    window.removeEventListener("resize", this.updateLinePosition);
   }
 
   trigger() {
@@ -103,6 +107,9 @@ export class GameCrossModule extends Module {
 
     const container = document.createElement("div");
     container.className = "gamecross-container";
+
+    const title = document.createElement("p");
+    title.textContent = "Крестики-нолики";
 
     for (let index = 0; index < 9; index++) {
       const square = document.createElement("div");
@@ -141,14 +148,19 @@ export class GameCrossModule extends Module {
           this.gameOver = true;
           this.drawWinningLine();
           container.classList.add("locked-div");
-          setTimeout(() => {
-            alert(`Победили ${winner === "cross" ? "крестики" : "нолики"}!`);
-          }, 500);
         }
         this.state = +!this.state;
       }
     });
 
-    document.body.appendChild(container);
+    const resetButton = document.createElement("button");
+    resetButton.className = "button";
+    resetButton.textContent = "Выход";
+    resetButton.addEventListener("click", () => {
+      this.resetGame();
+    });
+
+    const mainContainer = document.querySelector(".main-container");
+    mainContainer.append(title, container, resetButton);
   }
 }
