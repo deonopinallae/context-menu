@@ -15,12 +15,12 @@ export class TimerModule extends Module {
     
     this.currentBackground = 'day';
     this.stars = [];
+    this.clouds = [];
     this.timerInterval = null;
     this.sun = null;
     this.moon = null;
   }
   
-
   createAudio(src) {
     const audio = new Audio();
     audio.src = src;
@@ -96,12 +96,12 @@ export class TimerModule extends Module {
     });
   }
 
-
   deleteTimer() {
     this.createModal();
     const modalOverlay = document.querySelector('.timerModalOverlay');
     const modalContent = modalOverlay.querySelector('.timerModalContent');
     const timerBlock = document.querySelector('.timerBlock');
+    
     modalContent.innerHTML = '';
     const modalHeader = document.createElement('div');
     modalHeader.className = 'timerModalContent_header';
@@ -114,15 +114,39 @@ export class TimerModule extends Module {
     this.timeEndSound.loop = true;
     this.timeEndSound.currentTime = 0;
     this.timeEndSound.play();
-
+  
     const removeElements = () => {
-      if (timerBlock) document.body.removeChild(timerBlock);
-      if (modalOverlay) document.body.removeChild(modalOverlay);
+      // Остановить звук
       this.timeEndSound.pause();
+      
+      // Удалить таймер
+      if (timerBlock && timerBlock.parentNode) {
+        timerBlock.parentNode.removeChild(timerBlock);
+      }
+      
+      // Удалить землю
+      document.querySelectorAll('.ground').forEach(ground => {
+        ground.remove();
+      });
+      
+      // Удалить облака
+      document.querySelectorAll('.cloud').forEach(cloud => {
+        cloud.remove();
+      });
+      
+      // Очистить небесные тела и звёзды
       this.clearCelestialBodies();
       this.removeStars();
+      
+      // Сбросить фон
+      document.body.style.background = '';
+      
+      // Удалить модальное окно
+      if (modalOverlay && modalOverlay.parentNode) {
+        modalOverlay.parentNode.removeChild(modalOverlay);
+      }
     };
-
+  
     closeBtn.addEventListener('click', removeElements);
     modalOverlay.addEventListener('click', (event) => {
       if (event.target === modalOverlay) {
@@ -149,6 +173,7 @@ export class TimerModule extends Module {
     });
     return format.join(':')
   }
+
   createStars() {
     for (let i = 0; i < 100; i++) {
       const star = document.createElement("div");
@@ -171,6 +196,42 @@ export class TimerModule extends Module {
     });
     this.stars = [];
   }
+
+  createClouds() {
+    const cloudCount = Math.floor(Math.random() * 2) + 1;
+    
+    for (let i = 0; i < cloudCount; i++) {
+        const cloud = document.createElement("div");
+        cloud.className = 'cloud';
+        
+        const size = Math.random() * 100 + 50;
+        cloud.style.width = `${size}px`;
+        cloud.style.height = `${size * 0.6}px`;
+        cloud.style.left = `-${size}px`;
+        cloud.style.top = `${Math.random() * 50}%`;
+        
+        const speed = Math.random() * 10 + 5;
+        cloud.style.setProperty('--speed', `${speed}s`);
+        cloud.style.opacity = Math.random() * 0.7 + 0.3;
+        
+        // Обработчик клика
+        cloud.addEventListener('click', () => {
+            cloud.classList.add('cloud-fade-out');
+            setTimeout(() => cloud.remove(), 500);
+        });
+        
+        document.body.appendChild(cloud);
+        
+        // Автоудаление после анимации
+        setTimeout(() => {
+            cloud.classList.add('cloud-fade-out');
+            setTimeout(() => cloud.remove(), 500);
+        }, speed * 1000);
+    }
+}
+
+
+  
 
   clearCelestialBodies() {
     if (this.sun && this.sun.parentNode) {
@@ -196,6 +257,7 @@ export class TimerModule extends Module {
       document.body.appendChild(this.moon);
     }
   }
+
   updateBackground(hours) {
     let newBackground;
     
@@ -205,78 +267,85 @@ export class TimerModule extends Module {
         newBackground = 'day';
     } else if (hours >= 18 && hours < 22) {
         newBackground = 'evening';
-    } else {
+    } else if (hours >= 22 && hours < 24 || hours >= 0 && hours <= 5){
         newBackground = 'night';
     }
     
-
     
         this.currentBackground = newBackground;
         document.body.style.background = this.backgrounds[newBackground];
         
-        // Управление звёздами и небесными телами
+        // Управление звёздами, облаками и небесными телами
         if (newBackground === 'night') {
             this.createStars();
             this.createCelestialBodies(false);
-        } else {
+            
+        } else if (newBackground === 'day' || newBackground === 'morning') {
             this.removeStars();
             this.createCelestialBodies(true);
+            this.createClouds();
+        } else {
+            this.removeStars();
+            
+            this.createCelestialBodies(false);
         }
     
-}
-
+  }
 
   startTimer() {
+    const ground = document.createElement('div');
+    ground.className = 'ground';
+    document.body.appendChild(ground);
+    
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
     }
+    
     const timerLust = document.querySelector('.timerBlock');
     if(timerLust) {
       timerLust.remove();
     }
+    
     this.clearCelestialBodies();
     this.removeStars();
-   
+    this.createClouds();
 
     const timeParts = this.time.split(":");
     const [hours, minutes, seconds] = timeParts.map(Number);
     let totalSeconds = hours * 3600 + minutes * 60 + seconds;
-    
+    this.updateBackground(hours);
     if (totalSeconds <= 0) {
       this.deleteTimer();
       return;
     }
+
 
     const timerBlock = document.createElement('div');
     timerBlock.className = 'timerBlock'
     timerBlock.textContent = this.converterTimeToConclision([hours, minutes, seconds]);
     document.body.appendChild(timerBlock);
 
-    const ground = document.createElement('div');
-    ground.className = 'ground';
-    document.body.appendChild(ground);
-
-
-
-    this.updateBackground(hours);
-
+    
+    
     const timerInterval = setInterval(() => {
-
-
       totalSeconds -= 1;
       if (totalSeconds < 0) {
         clearInterval(timerInterval);
+        
         this.deleteTimer();
         return;
       }
-      
-      const [h, m, s]= this.secondsToTime(totalSeconds);
-      console.log([h, m, s])
+      this.createClouds();
+      const [h, m, s] = this.secondsToTime(totalSeconds);
       
       timerBlock.textContent = this.converterTimeToConclision([h, m, s]);
-      if (m === 59 && s === 59) {
+      
+      if (m === 59 && s === 59 || m === 0 && s === 0) {
         this.updateBackground(h);
-    }
+      }
+
+      
+      
       if(totalSeconds < 4 && totalSeconds > 0) {
         timerBlock.classList.add('timerBlock-end');
         this.tickSound.currentTime = 0;
@@ -292,6 +361,5 @@ export class TimerModule extends Module {
 
   trigger() {
     this.createModal();
-    
   }
 }
