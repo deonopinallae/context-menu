@@ -150,11 +150,6 @@ export class GameCrossModule extends Module {
       }
     });
 
-    const resetButton = document.querySelector("button");   
-    resetButton.addEventListener("click", () => {
-      this.resetGame();
-    });
-
     const mainContainer = document.querySelector(".main-container");
     mainContainer.append(title, container);
   }
