@@ -35,7 +35,6 @@ export class ClicksModule extends Module {
             </div>
 
             <div class="game-area" id="game-area"></div>
-            <button class="button button_exit">Выход</button>
         `;
 
         const startButton = document.getElementById('start-button');
@@ -147,10 +146,12 @@ export class ClicksModule extends Module {
             }
         }
 
-        const resetButton = document.querySelector('.button_exit');
-        resetButton.addEventListener('click', () => {
-            mainContainer.innerHTML = "";
-            clearGame()
-        });
+        const clearFieldButton = document.querySelector('.button.button-right');
+        if (clearFieldButton) {
+            clearFieldButton.addEventListener('click', () => {
+                mainContainer.innerHTML = "";
+                clearGame();
+            });
+        }
     }
 }
