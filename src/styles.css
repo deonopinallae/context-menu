@@ -17,26 +17,54 @@ body {
   color: #1b1a1a;
   background-image: url(./images/373522_main.jpeg);
 }
+
 h1,
 p {
   text-align: center;
   font-weight: 400;
   font-style: normal;
 }
-button{
+
+button {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.15 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)" fill="%23f5e7d0"/></svg>');
+  border-radius: 8px;
   font-family: inherit;
   cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 700;
+  list-style: none;
+  padding: 6px 0;
+  margin: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.1),
+    inset 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(2px);
+  transform-origin: top left;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+button:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #2a1e12;
+  transform: translateX(3px);
+}
+
+button:active {
+  transform: translateX(3px) scale(0.98);
 }
 
 .main-container {
   margin: 20px auto 0;
   width: 40vw;
   height: 40vw;
-  border-radius: 10px; /* Закруглённые углы */
+  border-radius: 10px;
+  /* Закруглённые углы */
   box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.2),
-    /* Внутренняя тень (вдавленность) */ inset -3px -3px 5px
-      rgba(255, 255, 255, 0.7); /* Внутренний "свет" */
-  border: 1px solid #ccc; /* Лёгкая граница */
+    /* Внутренняя тень (вдавленность) */
+    inset -3px -3px 5px rgba(255, 255, 255, 0.7);
+  /* Внутренний "свет" */
+  border: 1px solid #ccc;
+  /* Лёгкая граница */
   display: flex;
   flex-direction: column;
   padding: 15px;
@@ -50,7 +78,8 @@ button{
 .menu {
   position: fixed;
   z-index: 1000;
-  width: 180px; /* Немного шире для эстетики */
+  width: 180px;
+  /* Немного шире для эстетики */
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.15 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)" fill="%23f5e7d0"/></svg>');
   border-radius: 8px;
   display: none;
@@ -99,12 +128,10 @@ button{
   left: 15px;
   right: 15px;
   height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(0, 0, 0, 0.1),
-    transparent
-  );
+  background: linear-gradient(to right,
+      transparent,
+      rgba(0, 0, 0, 0.1),
+      transparent);
 }
 
 @keyframes fadeIn {
@@ -112,6 +139,7 @@ button{
     opacity: 0;
     transform: scale(0.95) translateY(-5px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -120,7 +148,8 @@ button{
 
 .gamecross-container {
   width: 100%;
-  height: 100%; /* Занимает все доступное пространство */
+  height: 100%;
+  /* Занимает все доступное пространство */
 
   /* Сетка 3x3 */
   display: grid;
@@ -130,7 +159,8 @@ button{
   /* Фон и дополнительные стили */
   background-image: url("./images/wooden-floor-background.jpg");
   background-size: cover;
-  position: relative; /* Для позиционирования линии победы */
+  position: relative;
+  /* Для позиционирования линии победы */
 }
 
 .gamecross-cell {
@@ -142,8 +172,9 @@ button{
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.2),
-    /* Внутренняя тень (вдавленность) */ inset -3px -3px 5px
-      rgba(255, 255, 255, 0.7); /* Внутренний "свет" */
+    /* Внутренняя тень (вдавленность) */
+    inset -3px -3px 5px rgba(255, 255, 255, 0.7);
+  /* Внутренний "свет" */
 }
 
 .gamecross-cell-cross {
@@ -157,6 +188,7 @@ button{
   background-repeat: no-repeat;
   background-size: contain;
 }
+
 .winning-line {
   position: absolute;
   height: 6px;
@@ -172,46 +204,26 @@ button{
 }
 
 
-.button {
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.15 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)" fill="%23f5e7d0"/></svg>');
-  border-radius: 8px;
-  font-size: 1.3rem;
-  font-weight: 700;
-  list-style: none;
-  padding: 6px 0;
-  margin: 0;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.1),
-    inset 0 0 10px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(2px);
-  transform-origin: top left;
-  animation: fadeIn 0.3s ease-out forwards;
-}
 
-.button:hover {
-  background: rgba(0, 0, 0, 0.08);
-  color: #2a1e12;
-  transform: translateX(3px);
-}
-
-.button:active {
-  transform: translateX(3px) scale(0.98);
-}
 
 @media (max-width: 480px) {
   body {
     padding: 10px;
   }
+
   .main-container {
     margin: 0;
     width: 95vw;
     height: 95vw;
 
-    border-radius: 10px; /* Закруглённые углы */
+    border-radius: 10px;
+    /* Закруглённые углы */
     box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.2),
-      /* Внутренняя тень (вдавленность) */ inset -3px -3px 5px
-        rgba(255, 255, 255, 0.7); /* Внутренний "свет" */
-    border: 1px solid #ccc; /* Лёгкая граница */
+      /* Внутренняя тень (вдавленность) */
+      inset -3px -3px 5px rgba(255, 255, 255, 0.7);
+    /* Внутренний "свет" */
+    border: 1px solid #ccc;
+    /* Лёгкая граница */
 
     display: flex;
     flex-direction: column;
@@ -226,11 +238,13 @@ button{
 
 
 
-.game-settings, .game-info {
+.game-settings,
+.game-info {
   margin-bottom: 20px;
 }
 
-.game-settings select, .game-settings input {
+.game-settings select,
+.game-settings input {
   padding: 8px;
   font-size: 16px;
   border-radius: 5px;
@@ -322,6 +336,8 @@ select.fancy-select {
 #start-button {
   padding: 12px 20px;
   font-size: 18px;
+  border: none;
+  border-radius: 5px;
 }
 
 
@@ -335,13 +351,15 @@ select.fancy-select {
 
 @media (max-width: 640px) {
   .game-area {
-      width: 100%;
-      height: 300px;
+    width: 100%;
+    height: 300px;
   }
 
-  .game-settings input, .game-settings select, button {
-      font-size: 14px;
-      padding: 6px;
+  .game-settings input,
+  .game-settings select,
+  button {
+    font-size: 14px;
+    padding: 6px;
   }
 }
 
@@ -355,6 +373,7 @@ select.fancy-select {
   flex-direction: column;
 
 }
+
 .advice-ball {
   background-image: url('./images/ball.PNG');
   width: 180px;
@@ -367,7 +386,8 @@ select.fancy-select {
   opacity: 0;
   transition: all .7s;
 }
-.advice-ball__light{
+
+.advice-ball__light {
   background-image: url('./images/pngwing.com.png');
   width: 100px;
   height: 160px;
@@ -377,33 +397,42 @@ select.fancy-select {
   margin: 0 auto;
   animation-duration: 5s;
 }
+
 .advice__text {
   transition: all 1s;
   opacity: 0;
 }
+
 @keyframes light-animation {
   from {
     transform: scale(1);
   }
+
   16% {
     transform: scale(2);
   }
+
   36% {
     transform: scale(1);
   }
+
   52% {
     transform: scale(2);
   }
+
   68% {
     transform: scale(1);
   }
+
   84% {
     transform: scale(2);
   }
+
   94% {
     transform: scale(2.5);
 
   }
+
   to {
     transform: scale(3);
   }
@@ -427,67 +456,66 @@ select.fancy-select {
 
 /* Timer */
 .timerModalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 .timerModalContent {
-    background-image: url('./images/373522_main.jpeg');
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    width: 300px;
+  background-image: url('./images/373522_main.jpeg');
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  width: 300px;
 }
 
 .timerModalContent_header {
-    margin-bottom: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .timerModalContent_input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
 .button.timerModalContent_confirmBtn {
-    width: 100%;
+  width: 100%;
 }
-
 
 
 .timerModalContent_label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 18px;
-    text-align: center;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  text-align: center;
 }
 
 .timerBlock {
-    position: absolute;
-    top: 5%;
-    right: 5%;
-    font-size: 30px;
-    text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.8);
-    -webkit-text-stroke: 0.3px white;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-size: 30px;
+  text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.8);
+  -webkit-text-stroke: 0.3px white;
 
 }
 
 .timerModalContent_error {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .timerBlock-end {
@@ -505,109 +533,118 @@ select.fancy-select {
     to {
         font-size: 30px;
     }
-  }
+}
 
 
 .star {
-    animation: twinkle 2s infinite alternate ease-in-out;
-    position: absolute;
-    background: white;
-    border-radius: 50%;
+  animation: twinkle 2s infinite alternate ease-in-out;
+  position: absolute;
+  background: white;
+  border-radius: 50%;
 
 }
 
 @keyframes twinkle {
-    0% { opacity: 0.3; transform: scale(0.8); }
-    100% { opacity: 1; transform: scale(1.1); }
+  0% {
+    opacity: 0.3;
+    transform: scale(0.8);
   }
 
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
 .sun {
-    position: relative;
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle, #FFD700, #FFA500);
-    border-radius: 50%;
-    box-shadow: 0 0 30px #FFD700;
-    top: 20vh;
-    left: 20vh;
-    z-index: 999;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, #FFD700, #FFA500);
+  border-radius: 50%;
+  box-shadow: 0 0 30px #FFD700;
+  top: 20vh;
+  left: 20vh;
+  z-index: 999;
 }
 
 .moon {
-    position: relative;
-    width: 50px;
-    height: 50px;
-    background: radial-gradient(circle, #E6E6FA, #C0C0C0);
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(230, 230, 250, 0.7);
-    top: 20vh;
-    left: 20vh;
-    z-index: 999;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #E6E6FA, #C0C0C0);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(230, 230, 250, 0.7);
+  top: 20vh;
+  left: 20vh;
+  z-index: 999;
 }
 
 .ground {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: auto;
-    height: 50%;
-    z-index: 800;
-    background: url('../images/ground.png') no-repeat;
-    background-size: cover;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 50%;
+  z-index: 800;
+  background: url('../images/ground.png') no-repeat;
+  background-size: cover;
 }
 
 .cloud {
-    position: absolute;
-    background-color: white;
-    border-radius: 50%;
-    filter: blur(5px);
-    pointer-events: auto;
-    cursor: pointer;
-    transition: opacity 0.5s ease;
-    animation: float linear infinite;
-    animation-duration: var(--speed);
-    z-index: 1000;
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  filter: blur(5px);
+  pointer-events: auto;
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+  animation: float linear infinite;
+  animation-duration: var(--speed);
+  z-index: 1000;
+}
+
+.cloud::before,
+.cloud::after {
+  content: '';
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  filter: blur(5px);
+}
+
+.cloud::before {
+  width: 60%;
+  height: 60%;
+  top: -20%;
+  left: 20%;
+}
+
+.cloud::after {
+  width: 40%;
+  height: 40%;
+  top: 10%;
+  right: -10%;
+}
+
+.cloud-fade-out {
+  opacity: 0 !important;
+}
+
+@keyframes float {
+  from {
+    transform: translateX(0);
   }
 
-  .cloud::before, .cloud::after {
-    content: '';
-    position: absolute;
-    background-color: white;
-    border-radius: 50%;
-    filter: blur(5px);
+  to {
+    transform: translateX(calc(100vw + 200px));
   }
-
-  .cloud::before {
-    width: 60%;
-    height: 60%;
-    top: -20%;
-    left: 20%;
-  }
-
-  .cloud::after {
-    width: 40%;
-    height: 40%;
-    top: 10%;
-    right: -10%;
-  }
-
-  .cloud-fade-out {
-    opacity: 0 !important;
-  }
-
-  @keyframes float {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(calc(100vw + 200px));
-    }
-  }
+}
 
 .timer-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
