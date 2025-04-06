@@ -210,17 +210,19 @@ export class TimerModule extends Module {
     }
     
 
-    this.currentBackground = newBackground;
-    document.body.style.background = this.backgrounds[newBackground];
     
-    // Управление звёздами и небесными телами
-    if (newBackground === 'night') {
-        this.createStars();
-        this.createCelestialBodies(false);
-    } else {
-        this.removeStars();
-        this.createCelestialBodies(true);
-    }
+        this.currentBackground = newBackground;
+        document.body.style.background = this.backgrounds[newBackground];
+        
+        // Управление звёздами и небесными телами
+        if (newBackground === 'night') {
+            this.createStars();
+            this.createCelestialBodies(false);
+        } else {
+            this.removeStars();
+            this.createCelestialBodies(true);
+        }
+    
 }
 
 
@@ -272,7 +274,7 @@ export class TimerModule extends Module {
       console.log([h, m, s])
       
       timerBlock.textContent = this.converterTimeToConclision([h, m, s]);
-      if (m === 0 && s === 0) {
+      if (m === 59 && s === 59) {
         this.updateBackground(h);
     }
       if(totalSeconds < 4 && totalSeconds > 0) {
