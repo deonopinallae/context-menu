@@ -101,10 +101,7 @@ export class GameCrossModule extends Module {
   }
 
   trigger() {
-    if (document.querySelector(".gamecross-container")) {
-      this.resetGame();
-    }
-
+    this.resetGame();
     const container = document.createElement("div");
     container.className = "gamecross-container";
 
@@ -153,14 +150,7 @@ export class GameCrossModule extends Module {
       }
     });
 
-    const resetButton = document.createElement("button");
-    resetButton.className = "button";
-    resetButton.textContent = "Выход";
-    resetButton.addEventListener("click", () => {
-      this.resetGame();
-    });
-
     const mainContainer = document.querySelector(".main-container");
-    mainContainer.append(title, container, resetButton);
+    mainContainer.append(title, container);
   }
 }

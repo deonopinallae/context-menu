@@ -33,7 +33,7 @@ button {
   font-size: 1.3rem;
   font-weight: 700;
   list-style: none;
-  padding: 6px 0;
+  padding: 6px;
   margin: 0;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.1),
     inset 0 0 10px rgba(0, 0, 0, 0.1);
@@ -55,8 +55,8 @@ button:active {
 
 .main-container {
   margin: 20px auto 0;
-  width: 40vw;
-  height: 40vw;
+  width: 50vw;
+  height: 50vw;
   border-radius: 10px;
   /* Закруглённые углы */
   box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.2),
