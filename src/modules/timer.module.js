@@ -131,11 +131,6 @@ export class TimerModule extends Module {
         this.timerContainer.parentNode.removeChild(this.timerContainer);
       }
       
-      // Сбросить фон основного контейнера
-      const mainContainer = document.querySelector(".main-container");
-      if (mainContainer) {
-        mainContainer.style.background = '';
-      }
       
       // Удалить модальное окно
       if (modalOverlay && modalOverlay.parentNode) {
